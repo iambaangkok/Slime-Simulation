@@ -59,9 +59,11 @@ public class Simulation : MonoBehaviour {
 		compute.SetTexture(colourKernel, "TrailMap", trailMap);
 
 		if (wallMask != null) {
+			// Resize to fit RT
+			//wallMask.Resize(settings.width, settings.height);
+			//wallMask.Apply();
+
 			ComputeHelper.CopyRenderTexture(wallMask, wallMaskTexture);
-			//Graphics.Blit(wallMask, wallMaskTexture);
-			print("textureSet");
 			compute.SetTexture(updateKernel, "WallMask", wallMaskTexture);
 			compute.SetTexture(diffuseMapKernel, "DiffusedWallMask", wallMaskTexture);
 			compute.SetTexture(colourKernel, "ColourWallMask", wallMaskTexture);
@@ -75,21 +77,21 @@ public class Simulation : MonoBehaviour {
 			float randomAngle = Random.value * Mathf.PI * 2;
 			float angle = 0;
 
-			//if (settings.spawnMode == SpawnMode.Point) {
-			startPos = centre;
-			angle = randomAngle;
-			//} else if (settings.spawnMode == SpawnMode.Random) {
-			//	startPos = new Vector2(Random.Range(0, settings.width), Random.Range(0, settings.height));
-			//	angle = randomAngle;
-			//} else if (settings.spawnMode == SpawnMode.InwardCircle) {
-			//	startPos = centre + Random.insideUnitCircle * settings.height * 0.5f;
-			//	angle = Mathf.Atan2((centre - startPos).normalized.y, (centre - startPos).normalized.x);
-			//} else if (settings.spawnMode == SpawnMode.RandomCircle) {
-			//	startPos = centre + Random.insideUnitCircle * settings.height * 0.15f;
-			//	angle = randomAngle;
-			//}
+            if (settings.spawnMode == SpawnMode.Point) {
+                startPos = centre;
+                angle = randomAngle;
+            } else if (settings.spawnMode == SpawnMode.Random) {
+                startPos = new Vector2(Random.Range(0, settings.width), Random.Range(0, settings.height));
+                angle = randomAngle;
+            } else if (settings.spawnMode == SpawnMode.InwardCircle) {
+                startPos = centre + Random.insideUnitCircle * settings.height * 0.5f;
+                angle = Mathf.Atan2((centre - startPos).normalized.y, (centre - startPos).normalized.x);
+            } else if (settings.spawnMode == SpawnMode.RandomCircle) {
+                startPos = centre + Random.insideUnitCircle * settings.height * 0.15f;
+                angle = randomAngle;
+            }
 
-			Vector3Int speciesMask;
+            Vector3Int speciesMask;
 			int speciesIndex = 0;
 			int numSpecies = settings.speciesSettings.Length;
 
