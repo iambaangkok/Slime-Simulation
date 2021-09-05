@@ -235,15 +235,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0173053465a956443813261665491110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compute: {fileID: 7200000, guid: a0aea66b8c503e748bb334583d5db67c, type: 3}
+  compute: {fileID: 7200000, guid: 7f5d52617a3844e408fb6a7bb38d1f12, type: 3}
   drawAgentsCS: {fileID: 7200000, guid: 9d6969cce8474ed4899115f5d816b0a5, type: 3}
-  settings: {fileID: 11400000, guid: 87cfdbad3f2699649b250f4531fd4d7e, type: 2}
+  settings: {fileID: 11400000, guid: f6e577d46afcb4e46b69a1472da0db02, type: 2}
+  wallMask: {fileID: 2800000, guid: c6fa04017e0fb754f81c85fc674d039b, type: 3}
   showAgentsOnly: 0
-  filterMode: 1
+  filterMode: 0
   format: 48
   trailMap: {fileID: 0}
   diffusedTrailMap: {fileID: 0}
   displayTexture: {fileID: 0}
+  wallMaskTexture: {fileID: 0}
 --- !u!4 &1531495863
 Transform:
   m_ObjectHideFlags: 0
